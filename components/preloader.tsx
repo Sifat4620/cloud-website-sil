@@ -8,9 +8,11 @@ import { usePathname } from "next/navigation"
 export function Preloader() {
   const [loading, setLoading] = useState(true)
   const pathname = usePathname()
+  const [isMounted, setIsMounted] = useState(false)
 
-  // Reset loading state when route changes
+  // Handle client-side only code
   useEffect(() => {
+    setIsMounted(true)
     setLoading(true)
 
     // Simulate loading time
@@ -20,6 +22,11 @@ export function Preloader() {
 
     return () => clearTimeout(timer)
   }, [pathname])
+
+  // Don't render anything during SSR to prevent hydration errors
+  if (!isMounted) {
+    return null
+  }
 
   if (!loading) return null
 

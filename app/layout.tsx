@@ -58,6 +58,17 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="canonical" href="https://squareinformatix.com/" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136696270-1"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'UA-136696270-1');
+            `,
+          }}
+        />
       </head>
       <body className={`${inter.variable} ${notoSansBengali.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

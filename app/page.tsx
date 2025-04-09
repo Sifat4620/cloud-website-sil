@@ -18,7 +18,8 @@ import { ContactInfoSection } from "@/components/contact-info-section"
 import Link from "next/link"
 
 export default function Home() {
-  const { t, language } = useTranslation()
+  const translation = useTranslation()
+  const { language, t } = translation
 
   // Update HTML lang attribute when language changes
   useEffect(() => {
@@ -37,12 +38,9 @@ export default function Home() {
                 <div className="flex flex-col justify-center space-y-4">
                   <div className="space-y-2">
                     <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                      <TypingEffect text="Cloud Solutions for Your Business" />
+                      <TypingEffect text={t("cloudSolutions")} />
                     </h1>
-                    <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                      Scalable, secure, and reliable cloud services to power your applications and infrastructure in
-                      Bangladesh.
-                    </p>
+                    <p className="max-w-[600px] text-muted-foreground md:text-xl">{t("scalableSecure")}</p>
                   </div>
                   <div className="flex flex-col gap-2 min-[400px]:flex-row">
                     <Link href="/services#rent-server">
@@ -52,7 +50,7 @@ export default function Home() {
                       </AnimatedGradientButton>
                     </Link>
                     <Button size="lg" variant="outline">
-                      Learn More
+                      {t("learnMore")}
                     </Button>
                   </div>
                 </div>

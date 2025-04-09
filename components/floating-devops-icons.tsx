@@ -17,10 +17,10 @@ interface DevOpsIcon {
 export function FloatingDevOpsIcons() {
   const [icons, setIcons] = useState<DevOpsIcon[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    // Only run on client side
-    if (typeof window === "undefined") return
+    setIsMounted(true)
 
     const devOpsImages = [
       "/images/devops/docker.png",
@@ -48,6 +48,10 @@ export function FloatingDevOpsIcons() {
 
     setIcons(newIcons)
   }, [])
+
+  if (!isMounted) {
+    return null // Return null on server-side rendering
+  }
 
   return (
     <div ref={containerRef} className="fixed inset-0 w-full h-full pointer-events-none z-[-2] opacity-10">
